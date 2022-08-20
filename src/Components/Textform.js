@@ -15,8 +15,19 @@ function Textform(props) {
     console.log("hello on click has been clicked");
 
     console.log("hello inpute string is :", { text1 });
+
+    let newText = text.replaceAll(`${text1}`, `${text2}`);
+    // let newText= "hi it is me"
+    setText(newText);
+  };
+
+  const handleCopyClick = () => {
     
-    let newText = text.replace({text1}, {text2});
+    const newText = {text};
+    setText(newText);
+  };
+  const handleOriginalClick = () => {
+    const newText = {text};
     setText(newText);
   };
 
@@ -33,17 +44,25 @@ function Textform(props) {
     //setText(event.target.value1);
   };
 
-  const handleMessageChange = event => {
+  const handleMessageChange1 = (event) => {
     // 👇️ access textarea value
-    console.log("hello on send mesafsdf");
-    setMessage1(event.target.value1);
-    setMessage2(event.target.value2);
    
+    setMessage1(event.target.value);
+    console.log(setMessage1);
+    // setMessage2(event.target.value);
+  };
+  const handleMessageChange2 = (event) => {
+    // 👇️ access textarea value
+   
+    // setMessage1(event.target.value);
+    // console.log(setMessage1);
+    setMessage2(event.target.value);
+    console.log(setMessage2);
   };
 
   const [text, setText] = useState("helo i am use state");
-  const [text1, setMessage1] = useState("Enter your word here");
-  const [text2, setMessage2] = useState("Enter your word here");
+  const [text1, setMessage1] = useState("");
+  const [text2, setMessage2] = useState("");
   // let text1 = "";
   // let text2 = "";
 
@@ -69,40 +88,46 @@ function Textform(props) {
         {/* <button className="btn btn-primary" onClick={handleReplaceClick}>
           replace
         </button> */}
-        <div className="dropdown">
+        {/* <div className="dropdown"> */}
+        <button
+          className="btn btn-primary dropdown-toggle"
+          
+          id="dropdownMenuLink"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Replace
+        </button>
+
+        <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <input
+            className="dropdown-item"
+            type="text"
+            value={text1}
+            onChange={handleMessageChange1}
+            aria-labelledby="dropdownMenuButton1"
+          ></input>
+          <input
+            className="dropdown-item"
+            type="text"
+            value={text2}
+            onChange={handleMessageChange2}
+            aria-labelledby="dropdownMenuButton1"
+          ></input>
           <a
-            className="btn btn-secondary dropdown-toggle"
+            className="btn btn-secondary"
             onClick={handleReplaceClick}
-            id="dropdownMenuLink"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
+           
           >
             Replace
           </a>
-
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <input
-              className="dropdown-item"
-              type="text"
-              value1={text1}
-              onChange={handleMessageChange}
-              aria-labelledby="dropdownMenuButton1"
-            ></input>
-            <input
-              className="dropdown-item"
-              type="text"
-              value2={text2}
-              onChange={handleMessageChange}
-              aria-labelledby="dropdownMenuButton1"
-            ></input>
-            ;
-          </ul>
-        </div>
-        <button className="btn btn-primary" onClick={handleUpClick}>
-          uppercase
+        </ul>
+        {/* </div> */}
+        <button className="btn btn-primary" onClick={handleCopyClick}>
+          copy
         </button>
-        <button className="btn btn-primary" onClick={handleUpClick}>
-          uppercase
+        <button className="btn btn-primary" onClick={handleOriginalClick}>
+          original
         </button>
         <button className="btn btn-primary" onClick={handleUpClick}>
           uppercase
