@@ -5,11 +5,13 @@ function Textform(props) {
     console.log("hello on click has been clicked");
     let newText = text.toUpperCase();
     setText(newText);
+    props.showalert("converted to Uppercase","primary");
   };
   const handleLwClick = () => {
     console.log("hello on click has been clicked");
     let newText = text.toLowerCase();
     setText(newText);
+    props.showalert("converted to Lowercase","primary");
   };
   const handleReplaceClick = () => {
     console.log("hello on click has been clicked");
@@ -19,15 +21,15 @@ function Textform(props) {
     let newText = text.replaceAll(`${text1}`, `${text2}`);
     // let newText= "hi it is me"
     setText(newText);
+    props.showalert("Word replaced","primary");
   };
 
   const handleCopyClick = () => {
-    
-    const newText = {text};
+    const newText = { text };
     setText(newText);
   };
   const handleOriginalClick = () => {
-    const newText = {text};
+    const newText = { text };
     setText(newText);
   };
 
@@ -46,14 +48,14 @@ function Textform(props) {
 
   const handleMessageChange1 = (event) => {
     // 👇️ access textarea value
-   
+
     setMessage1(event.target.value);
     console.log(setMessage1);
     // setMessage2(event.target.value);
   };
   const handleMessageChange2 = (event) => {
     // 👇️ access textarea value
-   
+
     // setMessage1(event.target.value);
     // console.log(setMessage1);
     setMessage2(event.target.value);
@@ -69,7 +71,10 @@ function Textform(props) {
   return (
     <>
       <div>
-        <div className="mb-3">
+        <div
+          className="mb-3"
+          style={{ color: props.mode === `light` ? `black` : `white` }}
+        >
           <h2>{props.heading}</h2>
           <textarea
             className="form-control"
@@ -77,6 +82,10 @@ function Textform(props) {
             onChange={handleOnChange}
             id="myBox"
             rows="8"
+            style={{
+              backgroundColor: props.mode === `dark` ? `grey` : `white`,
+              color: props.mode === `light` ? `black` : `white`,
+            }}
           ></textarea>
         </div>
         <button className="btn btn-primary mx-2" onClick={handleUpClick}>
@@ -91,7 +100,6 @@ function Textform(props) {
         {/* <div className="dropdown"> */}
         <button
           className="btn btn-primary dropdown-toggle"
-          
           id="dropdownMenuLink"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -114,13 +122,9 @@ function Textform(props) {
             onChange={handleMessageChange2}
             aria-labelledby="dropdownMenuButton1"
           ></input>
-          <a
-            className="btn btn-secondary"
-            onClick={handleReplaceClick}
-           
-          >
+          <button className="btn btn-secondary" onClick={handleReplaceClick}>
             Replace
-          </a>
+          </button>
         </ul>
         {/* </div> */}
         <button className="btn btn-primary" onClick={handleCopyClick}>
@@ -148,11 +152,21 @@ function Textform(props) {
           uppercase
         </button>
       </div>
-      <div className="container my-4">
+      <div
+        className="container my-4"
+        style={{ color: props.mode === `light` ? `black` : `white` }}
+      >
         <h3>Your Text Summary</h3>
         <p>
           No. of words {text.split(" ").length} and {text.length} Charcter
         </p>
+      </div>
+      <div
+        className="container  my-3"
+        style={{ color: props.mode === `light` ? `black` : `white` }}
+      >
+        <h2>Preview</h2>
+        <p>{text.length>0?text:"Enter something to preview"}</p>
       </div>
     </>
   );
