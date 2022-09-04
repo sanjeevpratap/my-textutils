@@ -158,7 +158,7 @@ function Textform(props) {
       >
         <h3>Your Text Summary</h3>
         <p>
-          No. of words {text.split(" ").length} and {text.length} Charcter
+          No. of words {text.split(" ").filter((element)=>{return element.length!==0}).length} and {text.length} Charcter
         </p>
       </div>
       <div

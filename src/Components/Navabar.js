@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 function Navabar(props) {
   return (
@@ -9,9 +8,9 @@ function Navabar(props) {
       className={`navbar navbar-expand-lg ${props.mode}-light bg-${props.mode}`}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           {props.title}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,20 +20,20 @@ function Navabar(props) {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"><button className="btn btn-dark"></button></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto ">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link className="nav-link" to="/about">
                 {props.titleabout}
               </Link>
-            </li> */}
+            </li>
             {/* <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
@@ -55,32 +54,27 @@ function Navabar(props) {
           <button className="btn btn-outline-success" type="submit">Search</button>
         </form> */}
 
-          <div class="dropdown">
+          <div className="dropdown">
             <button
-              class="btn btn-secondary dropdown-toggle mx-3"
+              className="btn btn-secondary dropdown-toggle mx-3"
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              
             >
               Color Mode
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a class="dropdown-item" href="#" onClick={props.togglemodered}>
+                <button className="dropdown-item" onClick={props.togglemodered}>
                   {props.red}
-                </a>
+                </button>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
-                  Yellow
-                </a>
+                <button className="dropdown-item">Yellow</button>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
-                  Green
-                </a>
+                <button className="dropdown-item">Green</button>
               </li>
             </ul>
           </div>
@@ -98,7 +92,7 @@ function Navabar(props) {
             />
             <label
               className="form-check-label"
-              htmlfor="flexSwitchCheckDefault"
+              htmlFor="flexSwitchCheckDefault"
             >
               dark mode
             </label>
